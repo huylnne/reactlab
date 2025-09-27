@@ -1,0 +1,43 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #cce6ff; /* xanh nhạt giống figma */
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+    max-width: 1694px;
+    height: 120px;
+    width: 100%;
+  }
+  
+  .headerLeft {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .logo {
+    width: 98px;
+    height: 86px;
+  }
+  
+  .headerRight {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .avatar {
+    width: 69px !important;
+    height: 69px !important;
+    border-radius: 50%;
+  }
+  
+  .cartIcon {
+    color: #333;
+  }
+  
+  .userIcon {
+    color: #444;
+  }
+  

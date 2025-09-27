@@ -1,0 +1,114 @@
+.sidebar {
+    width: 243px;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 0;
+    flex-shrink: 0;        /* giữ nguyên width */
+    overflow: hidden;      /* không cho content tràn */
+    transition: width 0.3s ease;
+  }
+  
+  .sidebar.open {
+    width: 243px;
+  }
+  
+  .sidebar.collapsed {
+    width: 70px; /* chỉ còn icon */
+  }
+  
+  /* Header menu */
+  .menuA {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    height: 51px;
+    padding: 0 8px;
+  }
+  
+  .menuA h3 {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0;
+  }
+  
+  .hamburger {
+    width: 23px;   /* figma */
+    height: 24px;  /* figma */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+  
+  .hamburger span {
+    display: block;
+    height: 2px;
+    background: #000;
+    border-radius: 1px;
+  }
+  
+  /* List */
+  .ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .li {
+    margin: 0;
+    height: 61px;
+    padding: 0;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #000;
+    padding: 12px 8px;
+    transition: background 0.3s, color 0.3s;
+    height: 100%;
+  }
+  
+  .li:hover {
+    background: #f0f0f0;
+  }
+  
+  .active {
+    color: #0feaf8;
+    font-weight: bold;
+    border: 2px solid #0feaf8;
+  }
+  
+  /* Icon & text */
+  .img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    flex-shrink: 0; /* ko bị kéo giãn */
+  }
+  
+  .sidebarText {
+    font-size: 18px;
+  }
+  
+  /* Khi sidebar collapsed thì ẩn chữ */
+  .collapsed .sidebarText {
+    display: none;
+  }
+
+  .collapsed .link {
+    justify-content: center;   /* icon nằm giữa theo chiều ngang */
+    padding: 0;                /* bỏ padding trái/phải dư thừa */
+  }
+  
+  /* Khi link active thì icon đổi màu */
+  .active img {
+    filter: invert(55%) sepia(97%) saturate(500%) hue-rotate(150deg)
+      brightness(95%) contrast(90%);
+  }
+  

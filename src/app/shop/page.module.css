@@ -1,0 +1,222 @@
+.pageWrapper {
+  max-width: 1694px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.shopContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  justify-content: center;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #cde7f7;
+  padding: 10px 20px;
+}
+
+.mainLayout {
+  display: flex;
+  flex: 1;
+}
+
+.sidebar {
+  width: 200px;
+  background: #fff;
+  border-right: 1px solid #ccc;
+  padding: 15px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 15px 0;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #000;
+  font-size: 16px;
+}
+
+.sidebar ul li a.active {
+  font-weight: bold;
+  color: #00bcd4;
+}
+
+.shopContent {
+  flex: 1;
+}
+
+.shopToolbar {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  height: 120px;
+  padding-left: 16px;
+  border-bottom: 1px solid #ccc;
+}
+
+.shopToolbarUp {
+  display: flex;
+  height: 50%;
+  align-items: center;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.shopToolbarDown {
+  display: flex;
+  height: 50%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.shopToolbarDownLeft {
+  font-size: 28px;
+}
+
+.shopToolbarDownRight {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+.shopToolbarDownRight img {
+  width: 49px;
+  height: 49px;
+}
+
+/* ✅ inputSearch: để chứa dropdown suggest */
+.inputSearch {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  border: 1px solid #aaa;
+  overflow: hidden;
+  width: 459px;
+  justify-content: space-between;
+  padding-right: 10px;
+}
+
+.inputSearch input {
+  height: 100%;
+  border: none;
+  width: 100%;
+  font-size: 28px;
+  padding-left: 10px;
+}
+
+.inputSearch input:focus {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+.inputSearch input::placeholder {
+  color: #010101;
+  opacity: 1;
+}
+
+.inputSearch img {
+  width: 49px;
+  height: 49px;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 510px);
+  padding: 30px;
+  margin-top: 10px;
+  height: 858px;
+  gap: 50px;
+}
+
+.productCard {
+  text-align: center;
+  background: #fff;
+  display: flex;
+  width: 510px;
+}
+
+.productDetail {
+  width: 100%;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.productCard img {
+  width: 127px;
+  height: 173px;
+}
+
+.productCard h3 {
+  font-size: 24px;
+  line-height: 67px;
+  margin: 0;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 36px;
+  height: 54px;
+}
+
+.stars img {
+  height: 60px;
+  width: 60px;
+}
+
+.filterIcon {
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  margin-left: 10px;
+}
+
+.filterWrapper {
+  margin: 15px 0;
+  display: block;
+  position: absolute;
+  top: 50px;
+  right: 0px;
+}
+
+/* ✅ dropdown gợi ý search */
+.searchSuggest {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ccc;
+  list-style: none;
+  padding: 0;
+  margin: 4px 0 0 0;
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.searchSuggest li {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.searchSuggest li:hover {
+  background: #eee;
+}
