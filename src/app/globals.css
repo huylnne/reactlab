@@ -40,3 +40,23 @@ a {
     color-scheme: dark;
   }
 }
+
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+/* Breakpoints chung */
+@media (max-width: 768px) {
+  /* Mobile */
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Tablet */
+}
+
+@media (min-width: 1025px) {
+  /* Desktop */
+}

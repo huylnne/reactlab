@@ -1,5 +1,4 @@
 .pageWrapper {
-  max-width: 1694px;
   margin: 0 auto;
   width: 100%;
 }
@@ -9,27 +8,33 @@
   flex-direction: column;
   min-height: 100vh;
   font-family: Arial, sans-serif;
-  justify-content: center;
 }
 
 .header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background: #cde7f7;
   padding: 10px 20px;
+  width: 100%;
+  max-width: 100vw;
+  border-bottom: 1px solid #ccc;
 }
 
 .mainLayout {
   display: flex;
   flex: 1;
+  flex-wrap: nowrap;
 }
 
 .sidebar {
-  width: 200px;
+  width: 20%; 
+  min-width: 180px;
+  max-width: 280px;
   background: #fff;
   border-right: 1px solid #ccc;
   padding: 15px;
+  flex-shrink: 0;
 }
 
 .sidebar ul {
@@ -38,7 +43,7 @@
 }
 
 .sidebar ul li {
-  margin: 15px 0;
+  margin: 12px 0;
 }
 
 .sidebar ul li a {
@@ -54,14 +59,15 @@
 
 .shopContent {
   flex: 1;
+  min-width: 0;
 }
 
 .shopToolbar {
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
-  height: 120px;
-  padding-left: 16px;
+  height: 100px;
+  padding: 0 16px;
   border-bottom: 1px solid #ccc;
 }
 
@@ -69,7 +75,7 @@
   display: flex;
   height: 50%;
   align-items: center;
-  font-size: 36px;
+  font-size: 28px;
   font-weight: 700;
 }
 
@@ -81,7 +87,7 @@
 }
 
 .shopToolbarDownLeft {
-  font-size: 28px;
+  font-size: 20px;
 }
 
 .shopToolbarDownRight {
@@ -93,11 +99,11 @@
 }
 
 .shopToolbarDownRight img {
-  width: 49px;
-  height: 49px;
+  width: 36px;
+  height: 36px;
 }
 
-/* ✅ inputSearch: để chứa dropdown suggest */
+
 .inputSearch {
   position: relative;
   display: flex;
@@ -105,49 +111,51 @@
   height: 100%;
   border: 1px solid #aaa;
   overflow: hidden;
-  width: 459px;
+  width: 100%;
+  max-width: 400px;
   justify-content: space-between;
-  padding-right: 10px;
+  padding-right: 8px;
+  border-radius: 4px;
+  background: #fff;
 }
 
 .inputSearch input {
   height: 100%;
   border: none;
   width: 100%;
-  font-size: 28px;
-  padding-left: 10px;
+  font-size: 18px;
+  padding-left: 8px;
 }
 
 .inputSearch input:focus {
   outline: none;
   box-shadow: none;
-  border: none;
 }
 
 .inputSearch input::placeholder {
-  color: #010101;
-  opacity: 1;
+  color: #555;
 }
 
 .inputSearch img {
-  width: 49px;
-  height: 49px;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
 }
 
 .productGrid {
   display: grid;
-  grid-template-columns: repeat(2, 510px);
-  padding: 30px;
-  margin-top: 10px;
-  height: 858px;
-  gap: 50px;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 30px;
 }
 
 .productCard {
   text-align: center;
   background: #fff;
   display: flex;
-  width: 510px;
+  align-items: center;
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
 }
 
 .productDetail {
@@ -159,32 +167,33 @@
 }
 
 .productCard img {
-  width: 127px;
-  height: 173px;
+  width: 152px;
+  height: 226px;
 }
 
 .productCard h3 {
   font-size: 24px;
-  line-height: 67px;
-  margin: 0;
+  line-height: 1.4;
+  margin: 6px 0;
+  font-weight: bold;
 }
 
 .price {
   font-weight: bold;
   font-size: 36px;
-  height: 54px;
+  margin-top: 4px;
 }
 
 .stars img {
-  height: 60px;
   width: 60px;
+  height: 60px;
 }
 
 .filterIcon {
   cursor: pointer;
-  width: 24px;
-  height: 24px;
-  margin-left: 10px;
+  width: 20px;
+  height: 20px;
+  margin-left: 8px;
 }
 
 .filterWrapper {
@@ -195,7 +204,7 @@
   right: 0px;
 }
 
-/* ✅ dropdown gợi ý search */
+
 .searchSuggest {
   position: absolute;
   top: 100%;
@@ -214,9 +223,106 @@
 .searchSuggest li {
   padding: 8px 12px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .searchSuggest li:hover {
   background: #eee;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 25%;
+  }
+
+  .productGrid {
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .price {
+    font-size: 20px;
+  }
+}
+
+/* Mobile (<=768px) */
+@media (max-width: 768px) {
+  .mainLayout {
+    flex-direction: row;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+    padding: 8px;
+  }
+  .sidebar ul li {
+    margin: 8px 0;
+  }
+  .sidebar ul li a {
+    font-size: 14px;
+  }
+
+  .productGrid {
+    grid-template-columns: 1fr; /* 1 cột */
+    gap: 12px;
+    padding: 10px;
+  }
+
+  .shopToolbar {
+    height: auto;
+    padding: 8px 12px;
+  }
+
+  .shopToolbarUp {
+    font-size: 18px;
+  }
+
+  .inputSearch {
+    max-width: 100%;
+    height: 32px;
+  }
+
+  .inputSearch input {
+    font-size: 14px;
+  }
+
+  .inputSearch img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .productCard img {
+    width: 80px;
+    height: 120px;
+  }
+
+  .price {
+    font-size: 16px;
+  }
+
+  .header {
+    height: 60px;
+    padding: 6px 10px;
+  }
+
+  .header h1 {
+    font-size: 16px;
+  }
+
+  .header img {
+    width: 36px;
+    height: auto;
+  }
+  .filterWrapper {
+    width: 50%;
+  }
+
+  .stars img{
+    width: 20px;
+    height: 20px;
+  }
 }

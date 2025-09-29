@@ -35,19 +35,21 @@ export default function FilterPage() {
         <h3>Filter</h3>
       </div>
 
-      {/* Filter Giá */}
+      
       <div className={styles.filterSection}>
         <div className={styles.filterDesc}>
           <label>Giá</label>
         </div>
 
-        {/* Từ */}
+        
         <div className={styles.filterFromto}>
           <label>Từ:</label>
           <div className={styles.priceWithIc}>
-            <span onClick={() =>
-              setOpenDropdown(openDropdown === "minPrice" ? null : "minPrice")
-            }>
+            <span
+              onClick={() =>
+                setOpenDropdown(openDropdown === "minPrice" ? null : "minPrice")
+              }
+            >
               {minPrice}
             </span>
             <FaChevronDown
@@ -67,13 +69,15 @@ export default function FilterPage() {
           </div>
         </div>
 
-        {/* Đến */}
+      
         <div className={styles.filterFromto}>
           <label>Đến:</label>
           <div className={styles.priceWithIc}>
-            <span onClick={() =>
-              setOpenDropdown(openDropdown === "maxPrice" ? null : "maxPrice")
-            }>
+            <span
+              onClick={() =>
+                setOpenDropdown(openDropdown === "maxPrice" ? null : "maxPrice")
+              }
+            >
               {maxPrice}
             </span>
             <FaChevronDown
@@ -94,19 +98,21 @@ export default function FilterPage() {
         </div>
       </div>
 
-      {/* Filter Đánh giá */}
+      
       <div className={styles.filterSection}>
         <div className={styles.filterDesc}>
           <label>Đánh giá</label>
         </div>
 
-        {/* Từ */}
+        
         <div className={styles.filterFromto}>
           <label>Từ:</label>
           <div className={styles.priceWithIc}>
-            <span onClick={() =>
-              setOpenDropdown(openDropdown === "minStar" ? null : "minStar")
-            }>
+            <span
+              onClick={() =>
+                setOpenDropdown(openDropdown === "minStar" ? null : "minStar")
+              }
+            >
               {minStar}
             </span>
             <FaChevronDown
@@ -126,13 +132,15 @@ export default function FilterPage() {
           </div>
         </div>
 
-        {/* Đến */}
+      
         <div className={styles.filterFromto}>
           <label>Đến:</label>
           <div className={styles.priceWithIc}>
-            <span onClick={() =>
-              setOpenDropdown(openDropdown === "maxStar" ? null : "maxStar")
-            }>
+            <span
+              onClick={() =>
+                setOpenDropdown(openDropdown === "maxStar" ? null : "maxStar")
+              }
+            >
               {maxStar}
             </span>
             <FaChevronDown

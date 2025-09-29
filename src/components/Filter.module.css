@@ -102,3 +102,40 @@
 .dropdown li:hover {
   background: #eee;
 }
+
+
+@media (max-width: 768px) {
+
+
+  .filterBox {
+    width: 90%;            /* co lại cho vừa màn hình */
+    right: 0;
+    margin: 10px auto;
+    font-size: 14px;       /* giảm base font-size */
+  }
+
+  .filterHeader {
+    font-size: 18px;
+    height: 40px;
+    margin-bottom: 10px;
+  }
+
+  .filterDesc label,
+  .filterFromto label {
+    font-size: 14px;       /* label nhỏ hơn */
+  }
+
+  .priceWithIc span {
+    font-size: 14px;       /* text giá nhỏ hơn */
+  }
+
+  .priceWithIc svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .dropdown li {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+}

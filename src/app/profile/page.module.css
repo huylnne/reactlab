@@ -1,202 +1,193 @@
 .profileWrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 auto;
-    max-width: 1694px;
-    width: 100%;
-    background: #fff;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+  background: #fff;
+}
 
-  .mainLayout {
-    display: flex;
-    width: 100%;
-    max-width: 1694px;
-    margin: 0 auto;
-  }
-  
-  .profileContent {
-    flex: 1;
-    background: #fff;
-    height: 858px;
-  }
-  
-  .profileTitle {
-    font-size: 36px;
-    font-weight: bold;
-    padding-left: 16px;
-    height: 60px;
-    width: 405px;
-  }
-  
-  
-  
+.mainLayout {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+}
 
-  .profileCard {
-    display: flex;
-    padding: 60px 45px;
-    background: #fff;
-    height: 860px;
-    gap: 20px;
-  }
-  
-  .profileAvatar {
-    flex-shrink: 0;
-    margin-right: 30px;
-  }
-  
-  .profileAvatar img {
-    width: 186px;
-    height: 190px;
-    border-radius: 50%;
-  }
-  
-  .profileHeaderRight {
-    padding-top: 22px;
-  }
-  
-  .profileInfo {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
-  }
-  
-  .profileHeader {
-    display: flex;
-    gap: 50px;
-  }
-  
-  .profileInfo h3 {
-    font-size: 48px;
-    font-weight: bold;
-    margin: 0;
-    width: 448px;
-    height: 46px;
-    align-items: center;
-    display: flex;
-  }
-  
-  .profileInfo p {
-    font-size: 36px;
-    height: 63px;
-    width: 514px;
-  }
-  
-  .profileRow {
-    display: flex;
-    margin-bottom: 8px;
-    max-width: 983px;
-    height: 65px;
-    font-size: 24px;
-    align-items: center;
-    position: relative;
-  }
-  
-  .label {
-    width: 264px;
-    color: #333;
-  }
-  
-  .value {
-    display: flex;
-    color: #444;
-    border-bottom: 1px solid #333;
-    font-size: 24px;
-    align-items: center;
-  }
-  
-  .inputDate {
-    border: none;
-    border-bottom: 1px solid #333;
-    outline: none;
-    font-size: 16px;
-    padding: 4px 0;
-    width: 200px;
-    background: transparent;
-    color: #000;
-  }
-  
-  .inputDate:focus {
-    border-bottom: 2px solid #00bcd4;
-  }
-  
-  .inputSelect {
-    border: none;
-    border-bottom: 1px solid #333;
-    outline: none;
-    font-size: 16px;
-    padding: 4px 24px 4px 0;
-    background: transparent;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    position: relative;
-    width: 200px;
-    cursor: pointer;
-  }
-  
-  .field {
-    display: inline-flex;
-    align-items: center;
-    gap: 16px;
-    padding: 4px 0;
-    font-size: 24px;
-  }
-  
-  .arrowIcon {
-    font-size: 31px;
-  }
-  
-  .inputWrapper {
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #333;
-    position: relative;
-  }
-  
-  .iconCalendar {
-    position: absolute;
-    right: 4px;
-    width: 30px;
-    height: 27px;
-    object-fit: contain;
-    pointer-events: none;
-  }
-  
-  .inputText {
-    border: none;
-    border-bottom: 1px solid #333;
-    padding: 12px 0;
-    font-size: 24px;
-    outline: none;
-    background: transparent;
-    min-width: 0;
+.profileContent {
+  flex: 1;
+  background: #fff;
+  height: 858px;
+}
 
-  }
-  
-  .inputText:focus {
-    border-bottom: 2px solid #00bcd4;
-  }
-  
-  .profileRow img {
-    width: 30px;
-    height: 27px;
-    object-fit: contain;
-  }
-  
-  .value .inputText {
-    width: 100%;
-  }
-  
-  /* Ẩn icon mặc định */
-/* Ẩn icon mặc định nhưng vẫn giữ vùng click */
-input[type="date"]::-webkit-calendar-picker-indicator {
-  opacity: 0;     
+.profileTitle {
+  font-size: 36px;
+  font-weight: bold;
+  padding-left: 16px;
+  height: 60px;
+  width: 405px;
+}
+
+.profileCard {
+  display: flex;
+  padding: 60px 45px;
+  background: #fff;
+  height: 860px;
+  gap: 20px;
+}
+
+.profileAvatar {
+  flex-shrink: 0;
+  margin-right: 30px;
+}
+
+.profileAvatar img {
+  width: 186px;
+  height: 190px;
+  border-radius: 50%;
+}
+
+.profileHeaderRight {
+  padding-top: 22px;
+}
+
+.profileInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.profileHeader {
+  display: flex;
+  gap: 50px;
+}
+
+.profileInfo h3 {
+  font-size: 48px;
+  font-weight: bold;
+  margin: 0;
+  width: 448px;
+  height: 46px;
+  align-items: center;
+  display: flex;
+}
+
+.profileInfo p {
+  font-size: 36px;
+  height: 63px;
+  width: 514px;
+}
+
+.profileRow {
+  display: flex;
+  margin-bottom: 8px;
+  max-width: 983px;
+  height: 65px;
+  font-size: 24px;
+  align-items: center;
+  position: relative;
+}
+
+.label {
+  width: 264px;
+  color: #333;
+}
+
+.value {
+  display: flex;
+  color: #444;
+  border-bottom: 1px solid #333;
+  font-size: 24px;
+  align-items: center;
+}
+
+.inputDate {
+  border: none;
+  border-bottom: 1px solid #333;
+  outline: none;
+  font-size: 16px;
+  padding: 4px 0;
+  width: 200px;
+  background: transparent;
+  color: #000;
+}
+
+.inputDate:focus {
+  border-bottom: 2px solid #00bcd4;
+}
+
+.inputSelect {
+  border: none;
+  border-bottom: 1px solid #333;
+  outline: none;
+  font-size: 16px;
+  padding: 4px 24px 4px 0;
+  background: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
+  width: 200px;
   cursor: pointer;
 }
 
+.field {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 4px 0;
+  font-size: 24px;
+}
+
+.arrowIcon {
+  font-size: 31px;
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #333;
+  position: relative;
+}
+
+.iconCalendar {
+  position: absolute;
+  right: 4px;
+  width: 30px;
+  height: 27px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.inputText {
+  border: none;
+  border-bottom: 1px solid #333;
+  padding: 12px 0;
+  font-size: 24px;
+  outline: none;
+  background: transparent;
+  min-width: 0;
+}
+
+.inputText:focus {
+  border-bottom: 2px solid #00bcd4;
+}
+
+.profileRow img {
+  width: 30px;
+  height: 27px;
+  object-fit: contain;
+}
+
+.value .inputText {
+  width: 100%;
+}
+
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  cursor: pointer;
+}
 
 .dropdown {
   position: absolute;
@@ -205,7 +196,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   margin-top: 4px;
   width: 150px;
   z-index: 1000;
-  top:55px;
+  top: 55px;
 }
 
 .dropdownItem {
@@ -215,4 +206,157 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .dropdownItem:hover {
   background: #f5f5f5;
+}
+
+
+@media (max-width: 1024px) {
+  .profileCard {
+    flex-direction: column; 
+    padding: 30px 20px;
+    height: auto;
+  }
+
+  .profileAvatar img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .profileInfo h3 {
+    font-size: 28px;
+    width: auto;
+  }
+
+  .profileInfo p {
+    font-size: 20px;
+    width: auto;
+  }
+
+  .profileRow {
+    font-size: 18px;
+    height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .label {
+    width: 100%;
+    font-size: 18px;
+  }
+
+  .inputText {
+    font-size: 18px;
+  }
+
+  .arrowIcon {
+    font-size: 22px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 767px) {
+  .profileContent {
+    padding: 10px;
+    height: auto;
+  }
+
+  .profileTitle {
+    font-size: 22px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .profileCard {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 10px;
+    gap: 20px;
+    height: auto;
+  }
+
+  .profileHeader {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .profileAvatar img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .profileInfo h3 {
+    font-size: 18px;
+  }
+
+  .profileInfo p {
+    font-size: 14px;
+  }
+
+  .profileDetails {
+    width: 100%;
+  }
+
+  .profileRow {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 6px;
+    margin-bottom: 16px;
+    height: auto;
+    font-size: 14px;
+  }
+
+  .label {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .inputText {
+    font-size: 14px;
+    padding: 6px 0;
+    width: 100%;
+  }
+
+  .inputWrapper {
+    width: 100%;
+  }
+
+  .arrowIcon {
+    font-size: 16px;
+  }
+
+  .iconCalendar {
+    width: 18px;
+    height: 18px;
+  }
+
+  .dropdown {
+    width: 100%;
+  }
+
+  .dropdown {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ccc;
+    margin-top: 4px;
+    width: 100px; 
+    z-index: 1000;
+    top: 40px; 
+    border-radius: 4px;
+  }
+
+  .dropdownItem {
+    padding: 6px 10px; 
+    font-size: 14px;
+    cursor: pointer;
+    line-height: 1.4;
+  }
+
+  .dropdownItem:hover {
+    background: #f5f5f5;
+  }
 }

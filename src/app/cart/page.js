@@ -1,32 +1,14 @@
 "use client";
 
-import { useState } from "react";
 import styles from "./page.module.css";
 import Sidebar from "../../components/Sidebar";
 import Header from "../../components/Header";
-import products from "../data/products";
+import { useDispatch, useSelector } from "react-redux";
+import { removeFromCart, updateQty } from "../../redux/cartSlice";
 
 export default function CartPage() {
-  const [cart, setCart] = useState(
-    products.map((item) => ({ ...item, qty: 1 }))
-  );
-
-  const updateQty = (id, type) => {
-    setCart((prev) =>
-      prev.map((item) =>
-        item.id === id
-          ? {
-              ...item,
-              qty: type === "plus" ? item.qty + 1 : Math.max(1, item.qty - 1),
-            }
-          : item
-      )
-    );
-  };
-
-  const removeItem = (id) => {
-    setCart((prev) => prev.filter((item) => item.id !== id));
-  };
+  const cart = useSelector((state) => state.cart.items);
+  const dispatch = useDispatch();
 
   const subtotal = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
   const tax = subtotal * 0.1;
@@ -38,7 +20,7 @@ export default function CartPage() {
       <div className={styles.mainLayout}>
         <Sidebar />
 
-        {/* Content */}
+        
         <div className={styles.cartContent}>
           <div className={styles.cartHeader}>
             <div className={styles.cartText}>
@@ -49,45 +31,57 @@ export default function CartPage() {
             </div>
           </div>
 
-          {cart.map((item) => (
-            <div key={item.id} className={styles.cartItem}>
-              {/* Cột trái: ảnh */}
-              <img src={item.img} alt={item.name} />
+          {cart.length === 0 ? (
+            <p>Giỏ hàng trống</p>
+          ) : (
+            cart.map((item) => (
+              <div key={item.id} className={styles.cartItem}>
+               
+                <img src={item.img} alt={item.name} />
 
-              {/* Cột phải: chi tiết + actions */}
-              <div className={styles.cartRight}>
-                <div className={styles.cartDetails}>
-                  <h3>{item.name}</h3>
-                  <p>{item.desc}</p>
-                  <div className={styles.cartPrice}>
-                    {item.price.toLocaleString()} VND
+                
+                <div className={styles.cartRight}>
+                  <div className={styles.cartDetails}>
+                    <h3>{item.name}</h3>
+                    <p>{item.desc}</p>
+                    <div className={styles.cartPrice}>
+                      {item.price.toLocaleString()} VND
+                    </div>
                   </div>
-                </div>
 
-                <div className={styles.cartActions}>
-                  <div className={styles.removeBtnWrapper}>
-                    <button
-                      className={styles.removeBtn}
-                      onClick={() => removeItem(item.id)}
-                    >
-                      X
-                    </button>
-                  </div>
-                  <div className={styles.qtyControl}>
-                    <button onClick={() => updateQty(item.id, "minus")}>
-                      -
-                    </button>
-                    <span>{item.qty}</span>
-                    <button onClick={() => updateQty(item.id, "plus")}>
-                      +
-                    </button>
+                  <div className={styles.cartActions}>
+                    <div className={styles.removeBtnWrapper}>
+                      <button
+                        className={styles.removeBtn}
+                        onClick={() => dispatch(removeFromCart(item.id))}
+                      >
+                        X
+                      </button>
+                    </div>
+                    <div className={styles.qtyControl}>
+                      <button
+                        onClick={() =>
+                          dispatch(updateQty({ id: item.id, type: "minus" }))
+                        }
+                      >
+                        -
+                      </button>
+                      <span>{item.qty}</span>
+                      <button
+                        onClick={() =>
+                          dispatch(updateQty({ id: item.id, type: "plus" }))
+                        }
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
 
-          {/* Tổng kết */}
+          
           <div className={styles.cartSummary}>
             <div className={styles.summaryRow}>
               <span className={styles.label}>SubTotal</span>

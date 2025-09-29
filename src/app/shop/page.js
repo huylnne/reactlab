@@ -29,9 +29,12 @@ export default function ShopPage() {
 
   // lọc sản phẩm
   const filteredProducts = productsData.filter((item) => {
-    const matchSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchSearch = item.name
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
     const matchPrice = item.price >= minPrice && item.price <= maxPrice;
-    const matchStar = (item.stars || 0) >= minStar && (item.stars || 0) <= maxStar;
+    const matchStar =
+      (item.stars || 0) >= minStar && (item.stars || 0) <= maxStar;
 
     return matchSearch && matchPrice && matchStar;
   });

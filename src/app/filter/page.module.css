@@ -6,7 +6,7 @@
   margin: 0 auto;
 }
 
-/* Header */
+
 .filterHeader {
   display: flex;
   align-items: center;
@@ -18,7 +18,7 @@
   margin-bottom: 15px;
 }
 
-/* Mỗi section */
+
 .filterSection {
   width: 100%;
   margin-bottom: 20px;
@@ -37,7 +37,7 @@
   font-size: 36px;
 }
 
-/* Từ - Đến */
+
 .filterFromto {
   width: 100%;
   display: flex;
@@ -52,9 +52,9 @@
   text-align: right;
 }
 
-/* Box chứa giá trị + icon */
+
 .priceWithIc {
-  position: relative; /* để dropdown bám theo */
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,7 +67,7 @@
 
 .priceWithIc span {
   font-size: 36px;
-  flex:1;
+  flex: 1;
   text-align: center;
 }
 
@@ -77,10 +77,10 @@
   right: 10px;
 }
 
-/* Dropdown custom */
+
 .dropdown {
   position: absolute;
-  top: 100%; /* xổ ngay dưới box */
+  top: 100%; 
   left: 0;
   width: 100%;
   border: 1px solid #ccc;
@@ -90,7 +90,7 @@
   margin: 4px 0 0 0;
   z-index: 9999;
   border-radius: 4px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .dropdown li {

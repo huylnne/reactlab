@@ -1,15 +1,26 @@
 "use client";
 import { useParams } from "next/navigation";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../../redux/cartSlice"; // ✅ import action
 import Sidebar from "../../../components/Sidebar";
 import Header from "../../../components/Header";
 import styles from "./page.module.css";
 import products from "../../data/products";
+import { useRouter } from "next/navigation";
 
 export default function ProductDetail() {
+  const router = useRouter();
+
   const { id } = useParams();
   const dispatch = useDispatch();
+  const cartCount = useSelector((state) =>
+    state.cart.items.reduce((sum, item) => sum + item.qty, 0)
+  );
+  const handleBuyNow = () => {
+    dispatch(addToCart(product)); // thêm sản phẩm vào Redux
+    router.push("/cart"); // chuyển hướng sang giỏ hàng
+  };
+
   const product = products.find((p) => p.id === parseInt(id));
 
   if (!product) {
@@ -22,6 +33,38 @@ export default function ProductDetail() {
 
   const handleAddToCart = () => {
     dispatch(addToCart(product)); // ✅ đưa sản phẩm vào Redux
+    // 2. Animation bay vào giỏ hàng
+    const img = document.querySelector(`.${styles.productDetailImg} img`);
+    const cartIcon = document.querySelector(`.${styles.headerDownRight} img`);
+
+    if (!img || !cartIcon) return;
+
+    const imgRect = img.getBoundingClientRect();
+    const cartRect = cartIcon.getBoundingClientRect();
+
+    const flyingImg = img.cloneNode(true);
+    flyingImg.style.position = "fixed";
+    flyingImg.style.left = imgRect.left + "px";
+    flyingImg.style.top = imgRect.top + "px";
+    flyingImg.style.width = imgRect.width + "px";
+    flyingImg.style.height = imgRect.height + "px";
+    flyingImg.style.transition = "all 0.8s ease-in-out";
+    flyingImg.style.zIndex = 9999;
+    document.body.appendChild(flyingImg);
+
+    
+    requestAnimationFrame(() => {
+      flyingImg.style.left = cartRect.left + "px";
+      flyingImg.style.top = cartRect.top + "px";
+      flyingImg.style.width = "20px";
+      flyingImg.style.height = "20px";
+      flyingImg.style.opacity = 0.3;
+    });
+
+    
+    flyingImg.addEventListener("transitionend", () => {
+      flyingImg.remove();
+    });
   };
 
   return (
@@ -31,7 +74,7 @@ export default function ProductDetail() {
       <div className={styles.mainLayout}>
         <Sidebar />
 
-        {/* Nội dung product */}
+    
         <div className={styles.productContent}>
           <div className={styles.productHeader}>
             <div className={styles.headerUp}>
@@ -42,8 +85,10 @@ export default function ProductDetail() {
                 <span>Shop / Product</span>
               </div>
               <div className={styles.headerDownRight}>
-                {/* 🛒 Icon giỏ hàng ở Header đã có badge động */}
                 <img src="/img/cart2.png" alt="cart" />
+                {cartCount > 0 && (
+                  <span className={styles.cartBadge}>{cartCount}</span>
+                )}
               </div>
             </div>
           </div>
@@ -72,11 +117,10 @@ export default function ProductDetail() {
               </div>
 
               <div className={styles.productActions}>
-                <button className={styles.btnBuy}>Mua Ngay</button>
-                <button
-                  className={styles.btnCart}
-                  onClick={handleAddToCart}
-                >
+                <button className={styles.btnBuy} onClick={handleBuyNow}>
+                  Mua Ngay
+                </button>
+                <button className={styles.btnCart} onClick={handleAddToCart}>
                   Thêm vào giỏ hàng
                 </button>
               </div>
