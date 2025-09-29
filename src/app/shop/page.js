@@ -4,7 +4,7 @@ import Sidebar from "../../components/Sidebar";
 import Header from "../../components/Header";
 import FilterBox from "../../components/Filter";
 import Link from "next/link";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import productsData from "../data/products"; // import data
 
 export default function ShopPage() {
@@ -12,14 +12,23 @@ export default function ShopPage() {
 
   // state search
   const [searchTerm, setSearchTerm] = useState("");
-
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   // state filter
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(10000000);
   const [minStar, setMinStar] = useState(0);
   const [maxStar, setMaxStar] = useState(5);
 
-  // hàm cập nhật filter (nhận từ FilterBox)
+
+   useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedSearch(searchTerm);
+    }, 1000); 
+
+    return () => clearTimeout(handler); 
+  }, [searchTerm]);
+
+  
   const handleFilterChange = (filters) => {
     setMinPrice(filters.minPrice);
     setMaxPrice(filters.maxPrice);
@@ -27,11 +36,11 @@ export default function ShopPage() {
     setMaxStar(filters.maxStar);
   };
 
-  // lọc sản phẩm
+  
   const filteredProducts = productsData.filter((item) => {
     const matchSearch = item.name
       .toLowerCase()
-      .includes(searchTerm.toLowerCase());
+      .includes(debouncedSearch.toLowerCase());
     const matchPrice = item.price >= minPrice && item.price <= maxPrice;
     const matchStar =
       (item.stars || 0) >= minStar && (item.stars || 0) <= maxStar;
@@ -67,8 +76,6 @@ export default function ShopPage() {
                     />
                     <img src="/img/kinhlup.png" alt="search" />
                   </div>
-
-                  {/* ✅ Filter toggle */}
                   <img
                     src="/img/iconfinder.png"
                     alt="filter"

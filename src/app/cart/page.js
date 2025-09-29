@@ -1,14 +1,35 @@
 "use client";
-
+import { removeFromCartAsync,updateQtyAsync } from "../../redux/cartActions";
 import styles from "./page.module.css";
 import Sidebar from "../../components/Sidebar";
 import Header from "../../components/Header";
 import { useDispatch, useSelector } from "react-redux";
-import { removeFromCart, updateQty } from "../../redux/cartSlice";
+import {updateQty } from "../../redux/cartSlice";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
 
 export default function CartPage() {
   const cart = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
+  const router = useRouter();
+
+  const [user, setUser] = useState(null);
+
+  // ✅ check login
+  useEffect(() => {
+    const savedUser = localStorage.getItem("user");
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
+    } else {
+      // ❌ chưa login -> chuyển sang login
+      router.push("/login");
+    }
+  }, [router]);
+
+  if (!user) {
+    return null; // chờ redirect
+  }
 
   const subtotal = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
   const tax = subtotal * 0.1;
@@ -20,7 +41,6 @@ export default function CartPage() {
       <div className={styles.mainLayout}>
         <Sidebar />
 
-        
         <div className={styles.cartContent}>
           <div className={styles.cartHeader}>
             <div className={styles.cartText}>
@@ -36,10 +56,8 @@ export default function CartPage() {
           ) : (
             cart.map((item) => (
               <div key={item.id} className={styles.cartItem}>
-               
                 <img src={item.img} alt={item.name} />
 
-                
                 <div className={styles.cartRight}>
                   <div className={styles.cartDetails}>
                     <h3>{item.name}</h3>
@@ -53,7 +71,7 @@ export default function CartPage() {
                     <div className={styles.removeBtnWrapper}>
                       <button
                         className={styles.removeBtn}
-                        onClick={() => dispatch(removeFromCart(item.id))}
+                        onClick={() => dispatch(removeFromCartAsync(item.id))}
                       >
                         X
                       </button>
@@ -61,7 +79,7 @@ export default function CartPage() {
                     <div className={styles.qtyControl}>
                       <button
                         onClick={() =>
-                          dispatch(updateQty({ id: item.id, type: "minus" }))
+                          dispatch(updateQtyAsync({ id: item.id, type: "minus" }))
                         }
                       >
                         -
@@ -69,7 +87,7 @@ export default function CartPage() {
                       <span>{item.qty}</span>
                       <button
                         onClick={() =>
-                          dispatch(updateQty({ id: item.id, type: "plus" }))
+                          dispatch(updateQtyAsync({ id: item.id, type: "plus" }))
                         }
                       >
                         +
@@ -81,7 +99,6 @@ export default function CartPage() {
             ))
           )}
 
-          
           <div className={styles.cartSummary}>
             <div className={styles.summaryRow}>
               <span className={styles.label}>SubTotal</span>

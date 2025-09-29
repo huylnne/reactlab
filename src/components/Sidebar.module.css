@@ -5,6 +5,7 @@
   flex-shrink: 0;
   overflow: hidden;
   transition: width 0.3s ease;
+  height: 100vh;
 }
 
 /* Trạng thái */

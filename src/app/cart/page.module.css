@@ -5,17 +5,21 @@
   margin: 0 auto;
   width: 100%;
   background: #fff;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .mainLayout {
   display: flex;
   width: 100%;
   margin: 0 auto;
+  overflow: hidden;
 }
 
 .cartContent {
   flex: 1;
   background: white;
+  overflow-y: auto;
 }
 
 .cartHeader {
