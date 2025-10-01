@@ -5,7 +5,7 @@
   background: #cce6ff; /* xanh nhạt giống figma */
   padding: 10px 15px;
   border-bottom: 1px solid #ddd;
-  height: 120px;
+  height: 60px;
   width: 100%;
   flex-wrap: nowrap;
 }
@@ -16,9 +16,14 @@
   gap: 10px;
 }
 
+.headerLeft h1{
+  font-size:20px;
+  margin:0;
+}
+
 .logo {
-  width: 98px;
-  height: 86px;
+  width: 60px;
+  height: auto;
 }
 
 .headerRight {

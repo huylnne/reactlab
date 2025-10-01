@@ -1,8 +1,7 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import styles from "./page.module.css";
-import Sidebar from "../../components/Sidebar";
-import Header from "../../components/Header";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/navigation";
@@ -14,7 +13,7 @@ export default function ProfilePage() {
 
   const [user, setUser] = useState(null);
 
-  // các field profile
+ 
   const [dob, setDob] = useState("");
   const [companyAddress, setCompanyAddress] = useState("");
   const [homeAddress, setHomeAddress] = useState("");
@@ -23,7 +22,7 @@ export default function ProfilePage() {
 
   const router = useRouter();
 
-  // ✅ Load user từ localStorage
+
   useEffect(() => {
     const savedUser = localStorage.getItem("user");
     if (savedUser) {
@@ -38,7 +37,7 @@ export default function ProfilePage() {
     }
   }, [router]);
 
-  // ✅ Auto resize input
+  
   useEffect(() => {
     if (companyRef.current) {
       companyRef.current.style.width = "auto";
@@ -53,12 +52,12 @@ export default function ProfilePage() {
     }
   }, [homeAddress]);
 
-  // ✅ Lưu toàn bộ khi bấm Save
+ 
   const handleSave = async () => {
     if (!user) return;
 
     const updates = {
-      ...user,               // giữ nguyên các field cũ
+      ...user,             
       dob,
       companyAddress,
       homeAddress,
@@ -90,9 +89,9 @@ export default function ProfilePage() {
 
   return (
     <div className={styles.profileWrapper}>
-      <Header />
+      
       <div className={styles.mainLayout}>
-        <Sidebar />
+      
         <div className={styles.profileContent}>
           <div className={styles.profileTitle}>
             <span className={styles.profileTitleText}>My Profile</span>

@@ -1,7 +1,5 @@
 "use client";
 import styles from "./page.module.css";
-import Sidebar from "../../components/Sidebar";
-import Header from "../../components/Header";
 import FilterBox from "../../components/Filter";
 import Link from "next/link";
 import { useState,useEffect } from "react";
@@ -51,10 +49,9 @@ export default function ShopPage() {
   return (
     <div className={styles.pageWrapper}>
       <div className={styles.shopContainer}>
-        <Header />
 
         <div className={styles.mainLayout}>
-          <Sidebar />
+       
 
           <div className={styles.shopContent}>
             <div className={styles.shopToolbar}>

@@ -8,22 +8,23 @@
   height: 100vh;
 }
 
-/* Trạng thái */
+
 .open {
   width: 243px;
 }
 .collapsed {
-  width: 60px;
+  width: 50px;
+  justify-content: center;
 }
 
-/* Header menu */
+
 .menuA {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #ddd;
   height: 51px;
-  padding: 0 8px;
+  gap:10px;
+  padding-left: 10px;
 }
 .menuA h3 {
   font-size: 20px;
@@ -66,7 +67,7 @@
   text-decoration: none;
   font-size: 16px;
   color: #000;
-  padding: 12px 8px;
+  padding: 10px;
   height: 100%;
   transition: background 0.3s, color 0.3s;
 }
@@ -95,7 +96,7 @@
   font-size: 18px;
 }
 
-/* Khi collapse: chỉ còn icon, căn giữa */
+
 .collapsed .sidebarText {
   display: none;
 }
@@ -106,10 +107,10 @@
   text-decoration: none;
   font-size: 16px;
   color: #000;
-  padding: 12px 8px;
+  padding: 12px 5px;
   transition: background 0.3s, color 0.3s;
   height: 100%;
-  width: 100%; /* ✅ ép link chiếm hết chiều ngang li */
+  width: 100%; 
 }
 
 .collapsed .li {
@@ -118,7 +119,7 @@
   align-items: center;
 }
 
-/* Icon khi active */
+
 .active img {
   filter: invert(55%) sepia(97%) saturate(500%) hue-rotate(150deg)
     brightness(95%) contrast(90%);
@@ -128,7 +129,7 @@
 @media (max-width: 1024px) {
   .open {
     width: 200px;
-  } /* mở ở tablet nhỏ lại */
+  } 
   .sidebarText {
     font-size: 16px;
   }
@@ -138,10 +139,10 @@
 @media (max-width: 768px) {
   .open {
     width: 200px;
-  } /* mobile khi MỞ */
+  } 
   .collapsed {
     width: 10%;
-  } /* mobile khi COLLAPSE */
+  } 
 
   .li {
     height: 48px;

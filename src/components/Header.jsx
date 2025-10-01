@@ -2,29 +2,26 @@
 
 import styles from "./Header.module.css";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "antd";
-import { useDispatch } from "react-redux";   // ✅ thêm import
+import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "../redux/cartSlice";
+import { LOGOUT } from "../redux/actions/authActions"; 
+import { persistor } from "../redux/store"; 
 
 export default function Header() {
-  const [user, setUser] = useState(null);
   const router = useRouter();
-  const dispatch = useDispatch(); // ✅ thêm dispatch
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    const savedUser = localStorage.getItem("user");
-    if (savedUser) {
-      setUser(JSON.parse(savedUser));
-    }
-  }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem("user"); // ❌ clear user
-    dispatch(clearCart());           // ✅ clear cart redux
-    setUser(null);
-    router.push("/login");           // 👉 quay về login
+  const user = useSelector((state) => state.auth.user);
+
+  const handleLogout = () => {  
+    localStorage.clear();
+    persistor.purge();   
+    dispatch({ type: LOGOUT });
+    dispatch(clearCart());
+    router.push("/login");
   };
 
   return (

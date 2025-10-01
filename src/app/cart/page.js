@@ -1,10 +1,7 @@
 "use client";
 import { removeFromCartAsync,updateQtyAsync } from "../../redux/cartActions";
 import styles from "./page.module.css";
-import Sidebar from "../../components/Sidebar";
-import Header from "../../components/Header";
 import { useDispatch, useSelector } from "react-redux";
-import {updateQty } from "../../redux/cartSlice";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -16,19 +13,19 @@ export default function CartPage() {
 
   const [user, setUser] = useState(null);
 
-  // ✅ check login
+ 
   useEffect(() => {
     const savedUser = localStorage.getItem("user");
     if (savedUser) {
       setUser(JSON.parse(savedUser));
     } else {
-      // ❌ chưa login -> chuyển sang login
+     
       router.push("/login");
     }
   }, [router]);
 
   if (!user) {
-    return null; // chờ redirect
+    return null;
   }
 
   const subtotal = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
@@ -37,9 +34,9 @@ export default function CartPage() {
 
   return (
     <div className={styles.cartWrapper}>
-      <Header />
+      
       <div className={styles.mainLayout}>
-        <Sidebar />
+        
 
         <div className={styles.cartContent}>
           <div className={styles.cartHeader}>

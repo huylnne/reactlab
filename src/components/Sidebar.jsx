@@ -58,7 +58,7 @@ export default function Sidebar() {
       className={`${styles.sidebar} ${isOpen ? styles.open : styles.collapsed}`}
     >
       <div className={styles.menuA}>
-        {isOpen && <h3>Menu</h3>}
+        
         <div
           className={styles.hamburger}
           onClick={toggleSidebar}
@@ -68,6 +68,7 @@ export default function Sidebar() {
           <span></span>
           <span></span>
         </div>
+        {isOpen && <h3>Menu</h3>}
       </div>
 
       <ul className={styles.ul}>
@@ -93,7 +94,6 @@ export default function Sidebar() {
           </Link>
         </li>
 
-        {/* luôn hiện Profile, nhưng click thì check login */}
         <li className={styles.li}>
           <a
             href="#"

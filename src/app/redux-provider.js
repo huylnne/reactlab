@@ -2,7 +2,7 @@
 
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-import { store,persistor } from "../redux/store"; // 👈 chú ý import có ngoặc nhọn
+import { store,persistor } from "../redux/store"; 
 
 export default function ReduxProvider({ children }) {
     return (

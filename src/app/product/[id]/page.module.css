@@ -1,32 +1,4 @@
-.productDetail {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 auto;
-  width: 100%;
-  background: #fff;
-  height: 100vh;
-  overflow: hidden;
-}
 
-.mainLayout {
-  display: flex;
-  flex: 1;
-  width: 100%;
-  overflow: hidden;
-}
-
-.productContent {
-  flex: 1;
-  background: #fff;
-  overflow-y: auto;
-}
-
-.productHeader {
-  display: flex;
-  flex-direction: column;
-  border-bottom: 1px solid #ccc;
-}
 
 .headerUp {
   align-items: center;
@@ -35,7 +7,7 @@
 }
 
 .headerUp span {
-  font-size: 36px;
+  font-size: 30px;
   font-weight: bold;
 }
 
@@ -84,6 +56,7 @@
   font-weight: bold;
   margin: 15px 0;
 }
+
 
 .stars {
   color: gold;

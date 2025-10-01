@@ -1,9 +1,9 @@
 "use client";
+import { Button } from "antd";
+import { LeftOutlined } from '@ant-design/icons';
 import { useParams, useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { setCart } from "../../../redux/cartSlice";
-import Sidebar from "../../../components/Sidebar";
-import Header from "../../../components/Header";
 import styles from "./page.module.css";
 import products from "../../data/products";
 import { useEffect, useState } from "react";
@@ -38,7 +38,6 @@ export default function ProductDetail() {
     );
   }
 
-  // ✅ Hàm đồng bộ cart vào Redux + DB
   const updateCart = async (newCart) => {
     dispatch(setCart(newCart));
 
@@ -92,8 +91,6 @@ export default function ProductDetail() {
     }
 
     updateCart(newCart);
-
-    // hiệu ứng bay vào giỏ hàng
     const img = document.querySelector(`.${styles.productDetailImg} img`);
     const cartIcon = document.querySelector(`.${styles.headerDownRight} img`);
 
@@ -127,13 +124,15 @@ export default function ProductDetail() {
 
   return (
     <div className={styles.productDetail}>
-      <Header />
+      
       <div className={styles.mainLayout}>
-        <Sidebar />
+        
         <div className={styles.productContent}>
           <div className={styles.productHeader}>
             <div className={styles.headerUp}>
-              <span>Shop</span>
+            <Button icon={<LeftOutlined />} onClick={() => router.push("/shop")}>
+</Button>
+
             </div>
             <div className={styles.headerDown}>
               <div className={styles.headerDownLeft}>

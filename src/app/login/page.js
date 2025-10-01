@@ -4,44 +4,30 @@ import { FaUserCircle } from "react-icons/fa";
 import { IoIosLock } from "react-icons/io";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { setCart } from "../../redux/cartSlice"; // ✅ import Redux action
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loginRequest } from "../../redux/actions/authActions"; 
 
 export default function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [form, setForm] = useState({ username: "", password: "" });
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const handleSubmit = async (e) => {
+  
+  const { user, loading, error } = useSelector((state) => state.auth);
+
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    try {
-      const res = await fetch(
-        `http://localhost:5000/users?username=${username}&password=${password}`
-      );
-      const data = await res.json();
-
-      if (data.length > 0) {
-        const user = data[0];
-
-        // ✅ Lưu user vào localStorage
-        localStorage.setItem("user", JSON.stringify(user));
-
-        // ✅ Load cart của user vào Redux
-        dispatch(setCart(user.cart || []));
-
-        alert("Đăng nhập thành công: " + user.username);
-        router.push("/shop");
-      } else {
-        alert("Sai tên đăng nhập hoặc mật khẩu!");
-      }
-    } catch (err) {
-      console.error("Lỗi gọi API:", err);
-      alert("Có lỗi xảy ra!");
-    }
+    dispatch(loginRequest(form)); 
   };
+
+  
+  useEffect(() => {
+    if (user ) {
+      router.push("/shop");
+    }
+  }, [user, router]);
 
   return (
     <div className={styles.loginContainer}>
@@ -54,8 +40,9 @@ export default function Login() {
             <input
               type="text"
               placeholder="Tên đăng nhập"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={form.username}
+              onChange={(e) => setForm({ ...form, username: e.target.value })}
+              required
             />
           </div>
 
@@ -64,8 +51,9 @@ export default function Login() {
             <input
               type="password"
               placeholder="Mật khẩu"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={form.password}
+              onChange={(e) => setForm({ ...form, password: e.target.value })}
+              required
             />
             <div className={styles.unseen}>
               <FaRegEyeSlash />
@@ -79,10 +67,12 @@ export default function Login() {
             <a href="/">Bạn quên mật khẩu?</a>
           </div>
 
-          <button type="submit" className={styles.loginBtn}>
-            Đăng nhập
+          <button type="submit" className={styles.loginBtn} disabled={loading}>
+            {loading ? "Đang đăng nhập..." : "Đăng nhập"}
           </button>
         </form>
+
+        {error && <p style={{ color: "red" }}>{error}</p>}
 
         <p className={styles.loginFooter}>
           Nếu bạn có thắc mắc hay cần giải đáp, vui lòng liên hệ số điện thoại{" "}
