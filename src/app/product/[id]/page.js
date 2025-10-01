@@ -14,7 +14,15 @@ export default function ProductDetail() {
   const dispatch = useDispatch();
 
   const [user, setUser] = useState(null);
+  const cartItems = useSelector((state) => state.cart.items);
+  
+  // 👉 Lấy user từ Redux (trạng thái đăng nhập thực tế)
+  const authUser = useSelector((state) => state.auth.user);
 
+  // ✅ Chỉ tính cartCount nếu đã đăng nhập
+  const cartCount = authUser ? cartItems.reduce((sum, item) => sum + item.qty, 0) : 0;
+
+  // Load user từ localStorage (chỉ để hiển thị tên, v.v.)
   useEffect(() => {
     const savedUser = localStorage.getItem("user");
     if (savedUser) {
@@ -23,10 +31,6 @@ export default function ProductDetail() {
       setUser(null);
     }
   }, []);
-
-  const cartItems = useSelector((state) => state.cart.items);
-
-  const cartCount = cartItems.reduce((sum, item) => sum + item.qty, 0);
 
   const product = products.find((p) => p.id === parseInt(id));
 
@@ -38,19 +42,10 @@ export default function ProductDetail() {
     );
   }
 
-  const updateCart = async (newCart) => {
+  const updateCart = (newCart) => {
     dispatch(setCart(newCart));
-
     if (user) {
-      try {
-        await fetch(`http://localhost:5000/users/${user.id}`, {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ cart: newCart }),
-        });
-      } catch (err) {
-        console.error("Lỗi khi update giỏ hàng:", err);
-      }
+      localStorage.setItem(`cart_${user.id}`, JSON.stringify(newCart));
     }
   };
 
@@ -91,6 +86,7 @@ export default function ProductDetail() {
     }
 
     updateCart(newCart);
+
     const img = document.querySelector(`.${styles.productDetailImg} img`);
     const cartIcon = document.querySelector(`.${styles.headerDownRight} img`);
 
@@ -124,15 +120,12 @@ export default function ProductDetail() {
 
   return (
     <div className={styles.productDetail}>
-      
       <div className={styles.mainLayout}>
-        
         <div className={styles.productContent}>
           <div className={styles.productHeader}>
             <div className={styles.headerUp}>
-            <Button icon={<LeftOutlined />} onClick={() => router.push("/shop")}>
-</Button>
-
+              <Button icon={<LeftOutlined />} onClick={() => router.push("/shop")}>
+              </Button>
             </div>
             <div className={styles.headerDown}>
               <div className={styles.headerDownLeft}>

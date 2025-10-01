@@ -1,42 +1,38 @@
-"use client";
+// src/redux/cartSlice.js
+import { createSlice } from '@reduxjs/toolkit';
 
-import { createSlice } from "@reduxjs/toolkit";
+const initialState = {
+  items: [],
+};
 
 const cartSlice = createSlice({
-  name: "cart",
-  initialState: {
-    items: [],
-  },
+  name: 'cart',
+  initialState,
   reducers: {
-    setCart: (state, action) => {
-      state.items = action.payload; // load giỏ hàng từ API
-    },
-    addToCart: (state, action) => {
-      const product = action.payload;
-      const exist = state.items.find((i) => i.id === product.id);
-      if (exist) {
-        exist.qty += 1;
-      } else {
-        state.items.push({ ...product, qty: 1 });
-      }
-    },
+    // ✅ Thêm 2 action này
     removeFromCart: (state, action) => {
-      state.items = state.items.filter((i) => i.id !== action.payload);
+      state.items = state.items.filter(item => item.id !== action.payload);
     },
     updateQty: (state, action) => {
       const { id, type } = action.payload;
-      const item = state.items.find((i) => i.id === id);
+      const item = state.items.find(item => item.id === id);
       if (item) {
-        if (type === "plus") item.qty += 1;
-        if (type === "minus") item.qty = Math.max(1, item.qty - 1);
+        if (type === 'plus') {
+          item.qty += 1;
+        } else if (type === 'minus' && item.qty > 1) {
+          item.qty -= 1;
+        }
       }
     },
-    clearCart: (state) => {
+    resetCart: (state) => {
       state.items = [];
+    },
+    // ✅ Thêm action này để set cart từ localStorage hoặc API
+    setCart: (state, action) => {
+      state.items = action.payload;
     },
   },
 });
 
-export const { setCart, addToCart, removeFromCart, updateQty, clearCart } =
-  cartSlice.actions;
+export const { removeFromCart, updateQty,resetCart,setCart } = cartSlice.actions;
 export default cartSlice.reducer;

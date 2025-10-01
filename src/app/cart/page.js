@@ -1,10 +1,9 @@
 "use client";
-import { removeFromCartAsync,updateQtyAsync } from "../../redux/cartActions";
+import { removeFromCart, updateQty, setCart } from "../../redux/cartSlice";
 import styles from "./page.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-
 
 export default function CartPage() {
   const cart = useSelector((state) => state.cart.items);
@@ -12,17 +11,34 @@ export default function CartPage() {
   const router = useRouter();
 
   const [user, setUser] = useState(null);
-
- 
+  const authUser = useSelector((state) => state.auth.user);
+  // ✅ BƯỚC 1: Load user và cart RIÊNG của user
   useEffect(() => {
+    if (!authUser) {
+      router.push("/login");
+      return;
+    }
     const savedUser = localStorage.getItem("user");
     if (savedUser) {
-      setUser(JSON.parse(savedUser));
+      const userObj = JSON.parse(savedUser);
+      setUser(userObj);
+
+      // 👉 Load cart theo user.id
+      const savedCart = localStorage.getItem(`cart_${userObj.id}`);
+      if (savedCart) {
+        dispatch(setCart(JSON.parse(savedCart)));
+      }
     } else {
-     
       router.push("/login");
     }
   }, [router]);
+
+  // ✅ BƯỚC 2: Lưu cart vào localStorage theo user.id
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem(`cart_${user.id}`, JSON.stringify(cart));
+    }
+  }, [cart, user]);
 
   if (!user) {
     return null;
@@ -34,10 +50,7 @@ export default function CartPage() {
 
   return (
     <div className={styles.cartWrapper}>
-      
       <div className={styles.mainLayout}>
-        
-
         <div className={styles.cartContent}>
           <div className={styles.cartHeader}>
             <div className={styles.cartText}>
@@ -54,7 +67,6 @@ export default function CartPage() {
             cart.map((item) => (
               <div key={item.id} className={styles.cartItem}>
                 <img src={item.img} alt={item.name} />
-
                 <div className={styles.cartRight}>
                   <div className={styles.cartDetails}>
                     <h3>{item.name}</h3>
@@ -68,7 +80,7 @@ export default function CartPage() {
                     <div className={styles.removeBtnWrapper}>
                       <button
                         className={styles.removeBtn}
-                        onClick={() => dispatch(removeFromCartAsync(item.id))}
+                        onClick={() => dispatch(removeFromCart(item.id))}
                       >
                         X
                       </button>
@@ -76,7 +88,7 @@ export default function CartPage() {
                     <div className={styles.qtyControl}>
                       <button
                         onClick={() =>
-                          dispatch(updateQtyAsync({ id: item.id, type: "minus" }))
+                          dispatch(updateQty({ id: item.id, type: "minus" }))
                         }
                       >
                         -
@@ -84,7 +96,7 @@ export default function CartPage() {
                       <span>{item.qty}</span>
                       <button
                         onClick={() =>
-                          dispatch(updateQtyAsync({ id: item.id, type: "plus" }))
+                          dispatch(updateQty({ id: item.id, type: "plus" }))
                         }
                       >
                         +

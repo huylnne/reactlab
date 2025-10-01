@@ -6,25 +6,33 @@ import { FaRegEyeSlash } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginRequest } from "../../redux/actions/authActions"; 
+import { loginRequest } from "../../redux/actions/authActions";
 
 export default function Login() {
   const [form, setForm] = useState({ username: "", password: "" });
   const router = useRouter();
   const dispatch = useDispatch();
-
-  
   const { user, loading, error } = useSelector((state) => state.auth);
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(loginRequest(form)); 
+    dispatch(loginRequest(form));
   };
 
-  
+  // ✅ Khi đăng nhập thành công (user có giá trị), xử lý lưu user vào localStorage
   useEffect(() => {
-    if (user ) {
+    if (user) {
+      // 👉 Kiểm tra xem đã có user trong localStorage chưa
+      const savedUser = localStorage.getItem("user");
+      if (savedUser) {
+        // ✅ Nếu có → dùng user đã lưu (giữ nguyên profile đã sửa)
+        const parsed = JSON.parse(savedUser);
+        // Đảm bảo user Redux và localStorage đồng bộ
+        localStorage.setItem("user", JSON.stringify(parsed));
+      } else {
+        // ✅ Nếu chưa → lưu user mới (từ Redux) vào localStorage
+        localStorage.setItem("user", JSON.stringify(user));
+      }
       router.push("/shop");
     }
   }, [user, router]);

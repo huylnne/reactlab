@@ -1,7 +1,7 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import styles from "./page.module.css";
-
+import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/navigation";
@@ -22,8 +22,12 @@ export default function ProfilePage() {
 
   const router = useRouter();
 
-
+  const authUser = useSelector((state) => state.auth.user);
   useEffect(() => {
+    if (!authUser) {
+      router.push("/login");
+      return;
+    }
     const savedUser = localStorage.getItem("user");
     if (savedUser) {
       const parsed = JSON.parse(savedUser);
@@ -53,36 +57,26 @@ export default function ProfilePage() {
   }, [homeAddress]);
 
  
-  const handleSave = async () => {
+  const handleSave = () => {
     if (!user) return;
-
-    const updates = {
-      ...user,             
+  
+   
+    const updatedUser = {
+      ...user,
       dob,
       companyAddress,
       homeAddress,
       sex,
     };
-
-    try {
-      const res = await fetch(`http://localhost:5000/users/${user.id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updates),
-      });
-
-      if (!res.ok) throw new Error("PATCH thất bại");
-
-      const updatedUser = await res.json();
-
-      setUser(updatedUser);
-      localStorage.setItem("user", JSON.stringify(updatedUser));
-
-      alert("Updated!")
-    } catch (err) {
-      console.error("Lỗi khi lưu:", err);
-      message.error("Cập nhật thất bại ❌");
-    }
+  
+    
+    localStorage.setItem("user", JSON.stringify(updatedUser));
+  
+   
+    setUser(updatedUser);
+  
+  
+    alert("UPDATED SUCCESSFULLY!")
   };
 
   if (!user) return null;

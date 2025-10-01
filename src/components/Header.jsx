@@ -5,22 +5,26 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { clearCart } from "../redux/cartSlice";
+// ❌ XÓA DÒNG NÀY: import { resetCart } from "../redux/cartSlice";
 import { LOGOUT } from "../redux/actions/authActions"; 
-import { persistor } from "../redux/store"; 
 
 export default function Header() {
   const router = useRouter();
   const dispatch = useDispatch();
-
-
   const user = useSelector((state) => state.auth.user);
 
   const handleLogout = () => {  
-    localStorage.clear();
-    persistor.purge();   
+    // ✅ Chỉ xóa "user", KHÔNG xóa cart
+ 
+
+    // ✅ Gọi logout trong Redux
     dispatch({ type: LOGOUT });
-    dispatch(clearCart());
+
+    // ❌ KHÔNG làm 3 dòng sau:
+    // localStorage.clear();
+    // persistor.purge();
+    // dispatch(resetCart());
+
     router.push("/login");
   };
 
