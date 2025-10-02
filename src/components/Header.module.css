@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #cce6ff; /* xanh nhạt giống figma */
+  background: #cce6ff; 
   padding: 10px 15px;
   border-bottom: 1px solid #ddd;
   height: 60px;
@@ -17,7 +17,6 @@
 }
 
 .headerLeft h1{
-  font-size:20px;
   margin:0;
 }
 
@@ -46,9 +45,7 @@
   color: #444;
 }
 
-/* ===================== */
-/* ✅ Responsive */
-/* ===================== */
+
 
 /* Tablet */
 @media (max-width: 1024px) {
@@ -71,12 +68,12 @@
 /* Mobile */
 @media (max-width: 768px) {
   .header {
-    height: 60px;
-    padding: 6px 10px;
+    height: 40px;
+    padding: 0;
   }
-
+ 
   .headerLeft h1 {
-    font-size: 16px;
+    font-size: 13px;
   }
 
   .logo {

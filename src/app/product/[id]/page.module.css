@@ -191,7 +191,7 @@
 
   .productDetailImgType img {
     width: 70px;
-    height: auto;
+    height: 50px;
     border: 1px solid #ddd;
     border-radius: 4px;
   }
@@ -218,7 +218,8 @@
 
   .stars {
     font-size: 28px;
-    margin: 0;
+    margin-left: 5px;
+
   }
 
   .productActions {
@@ -237,10 +238,33 @@
 
 /* Mobile */
 @media (max-width: 767px) {
+
   .productWrapper {
     flex-direction: column;
     align-items: center;
     gap: 12px; 
+  }
+
+  .headerUp{
+    height: 30px;
+  }
+  
+  .headerDown{
+    height: 40px;
+  }
+
+  .headerDown span{
+    font-size: 18px;
+  }
+
+  .headerDownRight img{
+    width: 30px;
+    height: 30px;
+  }
+
+  .cartBadge{
+    width: 15px;
+    height: 15px;
   }
 
   .productDetailImg {
@@ -266,15 +290,16 @@
   }
 
   .productDesc {
-    height: auto; /* ✅ bỏ height cứng */
+    height: auto; 
     padding: 0 10px;
-    gap: 12px; /* ✅ giảm gap */
+    gap: 12px; 
     text-align: center;
   }
 
   .productDesc h2 {
     font-size: 16px;
     margin: 6px 0;
+    font-weight: bold;
   }
 
   .productDesc p {
@@ -288,10 +313,11 @@
     margin: 4px 0 2px;
   }
 
-  .stars {
-    font-size: 16px;
-    margin: 0;
+  .stars span{
+    width: 30px;
+    height: 30px;
   }
+
 
   .productActions {
     flex-direction: column;
@@ -306,17 +332,24 @@
     height: 44px;
     font-size: 16px;
   }
+   
+  .productDetailImgType{
+    height: 50px;
+  }
+
+  .productDetailImgType img{
+    height: 50px;
+  }
+
+
   .stars {
     display: flex; 
     justify-content: center;
     gap: 2px; 
-    font-size: 30px; 
+    font-size: 40px; 
     margin-top: 4px;
     width: 100%;
-  }
-
-  .stars span{
-    font-size: 50px;
+    height: 50px;
   }
 
   .price {

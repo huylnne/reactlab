@@ -183,6 +183,16 @@
   .price {
     font-size: 20px;
   }
+
+
+  .productCard h3{
+    font-size: 22px;
+  }
+
+  .stars img{
+    height: 30px;
+    width: 30px;
+  }
 }
 
 /* Mobile (<=768px) */
@@ -212,7 +222,7 @@
 
   .shopToolbar {
     height: auto;
-    padding: 8px 12px;
+    padding: 0;
   }
 
   .shopToolbarUp {
@@ -262,5 +272,13 @@
   .stars img{
     width: 20px;
     height: 20px;
+  }
+
+  .productCard h3{
+    font-size: 16px;
+  }
+
+  .shopToolbarDown{
+    gap:15px;
   }
 }

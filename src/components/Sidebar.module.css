@@ -135,13 +135,13 @@
   }
 }
 
-/* Mobile: chỉ định rõ width cho 2 trạng thái để toggle mượt */
+/* Mobile */
 @media (max-width: 768px) {
   .open {
     width: 200px;
   } 
   .collapsed {
-    width: 10%;
+    width: 45px;
   } 
 
   .li {

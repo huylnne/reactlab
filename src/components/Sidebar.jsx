@@ -11,7 +11,6 @@ export default function Sidebar() {
   const [user, setUser] = useState(null);
   const router = useRouter();
 
-  // check trạng thái login
   useEffect(() => {
     const savedUser = localStorage.getItem("user");
     if (savedUser) {
@@ -21,7 +20,7 @@ export default function Sidebar() {
     }
   }, []);
 
-  // auto open/collapse theo breakpoint
+ 
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -49,7 +48,7 @@ export default function Sidebar() {
     if (user) {
       router.push("/profile");
     } else {
-      router.push("/login"); // ❌ chưa login -> đi tới login
+      router.push("/login"); 
     }
   };
 

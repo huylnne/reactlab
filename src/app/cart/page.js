@@ -33,7 +33,7 @@ export default function CartPage() {
     }
   }, [router]);
 
-  // ✅ BƯỚC 2: Lưu cart vào localStorage theo user.id
+
   useEffect(() => {
     if (user) {
       localStorage.setItem(`cart_${user.id}`, JSON.stringify(cart));
